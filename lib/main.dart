@@ -4,12 +4,22 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
   var qIndex = 0;
 
   void ansQues() {
-    qIndex = qIndex + 1;
-    if (qIndex > 1) qIndex = 0;
+    setState(() {
+      qIndex = qIndex + 1;
+      if (qIndex > 1) qIndex = 0;
+    });
     print(qIndex);
     print('Answer chosen');
   }
