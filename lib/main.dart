@@ -5,6 +5,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  var qIndex = 0;
+
+  void ansQues() {
+    qIndex = qIndex + 1;
+    if (qIndex > 1) qIndex = 0;
+    print(qIndex);
+    print('Answer chosen');
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -18,18 +27,18 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('The question!'),
+            Text(questions[qIndex]),
             ElevatedButton(
               child: Text('Answer 1'),
-              onPressed: null,
+              onPressed: ansQues,
             ),
             ElevatedButton(
               child: Text('Answer 2'),
-              onPressed: null,
+              onPressed: ansQues,
             ),
             ElevatedButton(
               child: Text('Answer 3'),
-              onPressed: null,
+              onPressed: ansQues,
             ),
           ],
         ),
