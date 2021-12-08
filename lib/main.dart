@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trial/result.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +21,6 @@ class _MyAppState extends State<MyApp> {
   void _ansQues() {
     setState(() {
       _qIndex = _qIndex + 1;
-      if (_qIndex > 1) _qIndex = 0;
     });
     print(_qIndex);
     print('Answer chosen');
@@ -29,7 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    var _questions = [
       {
         'Q1': 'What\'s your favorite color?',
         'A1': ['red', 'blue', 'black'],
@@ -44,16 +43,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questions[_qIndex]['Q1'].toString(),
-            ),
-            ...(questions[_qIndex]['A1'] as List<String>).map((answer) {
-              return Answer(_ansQues, answer);
-            }).toList()
-          ],
-        ),
+        body: _qIndex < _questions.length
+            ? Quiz(
+                ansQuestion: _ansQues,
+                qIndex: _qIndex,
+                questions: _questions,
+              )
+            : Result(),
       ),
     );
   }
