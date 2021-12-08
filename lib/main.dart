@@ -18,6 +18,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _qIndex = 0;
 
+  void _resetQuiz() {
+    setState(() {
+      _qIndex = 0;
+    });
+  }
+
   void _ansQues() {
     setState(() {
       _qIndex = _qIndex + 1;
@@ -49,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                 qIndex: _qIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_resetQuiz),
       ),
     );
   }
